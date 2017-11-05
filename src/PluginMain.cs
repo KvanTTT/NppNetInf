@@ -4,7 +4,9 @@
     {
         public abstract string PluginName { get; }
 
-        public virtual void CommandMenuInit()
+        public abstract void CommandMenuInit();
+
+        public virtual void SetToolBarIcon()
         {
         }
 
@@ -13,10 +15,6 @@
         }
 
         public virtual void PluginCleanUp()
-        {
-        }
-
-        public virtual void SetToolBarIcon()
         {
         }
     }
