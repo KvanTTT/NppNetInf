@@ -1,5 +1,6 @@
 ﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
 using System;
+using System.IO;
 using System.Text;
 
 namespace NppNetInf
@@ -9,6 +10,8 @@ namespace NppNetInf
         public static NppData NppData { get; internal set; }
 
         public static FuncItems FuncItems { get; private set; } = new FuncItems();
+
+        public static string UserDataDir { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "NppGist");
 
         public static void SetCommand(int index, string commandName, NppFuncItemDelegate functionPointer)
         {
