@@ -1,8 +1,17 @@
-﻿namespace NppNetInf
+﻿using System.Diagnostics;
+
+namespace NppNetInf
 {
     public abstract class PluginMain
     {
         public abstract string PluginName { get; }
+
+        public PluginMain()
+        {
+#if RUN_DEBUGGER
+            Debugger.Launch();
+#endif
+        }
 
         public abstract void CommandMenuInit();
 
