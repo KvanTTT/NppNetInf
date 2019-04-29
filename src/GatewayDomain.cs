@@ -1,4 +1,5 @@
 ﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -22,7 +23,7 @@ namespace NppNetInf
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="red">a number 0-255</param>
         /// <param name="green">a number 0-255</param>
@@ -30,20 +31,17 @@ namespace NppNetInf
         public Colour(int red, int green, int blue)
         {
             if (red > 255 || red < 0)
-                throw new ArgumentOutOfRangeException("red", "must be 0-255");
+                throw new ArgumentOutOfRangeException(nameof(red), "must be 0-255");
             if (green > 255 || green < 0)
-                throw new ArgumentOutOfRangeException("green", "must be 0-255");
+                throw new ArgumentOutOfRangeException(nameof(green), "must be 0-255");
             if (blue > 255 || blue < 0)
-                throw new ArgumentOutOfRangeException("blue", "must be 0-255");
+                throw new ArgumentOutOfRangeException(nameof(blue), "must be 0-255");
             Red = red;
             Green = green;
             Blue = blue;
         }
 
-        public int Value
-        {
-            get { return Red + (Blue << 8) + (Green << 16); }
-        }
+        public int Value => Red + (Blue << 8) + (Green << 16);
     }
 
     /// <summary>
@@ -69,10 +67,7 @@ namespace NppNetInf
             this.pos = pos;
         }
 
-        public int Value
-        {
-            get { return pos; }
-        }
+        public int Value => pos;
 
         public static Position operator +(Position a, Position b)
         {
@@ -140,7 +135,7 @@ namespace NppNetInf
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((Position)obj);
         }
 
@@ -179,10 +174,7 @@ namespace NppNetInf
             value = (int)SCK_KeyCode | ((int)SCMOD_modifier << 16);
         }
 
-        public int Value
-        {
-            get { return Value; }
-        }
+        public int Value => Value;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -202,14 +194,14 @@ namespace NppNetInf
             this.charactersAndStyles = charactersAndStyles;
         }
 
-        public char[] Value { get { return charactersAndStyles; } }
+        public char[] Value => charactersAndStyles;
     }
 
     public class TextRange : IDisposable
     {
         Sci_TextRange _sciTextRange;
         IntPtr _ptrSciTextRange;
-        bool _disposed = false;
+        bool _disposed;
 
         public TextRange(CharacterRange chrRange, int stringCapacity)
         {
@@ -234,7 +226,19 @@ namespace NppNetInf
 
         public string lpstrText { get { _readNativeStruct(); return Marshal.PtrToStringAnsi(_sciTextRange.lpstrText); } }
 
-        public CharacterRange chrg { get { _readNativeStruct(); return _sciTextRange.chrg; } set { _sciTextRange.chrg = value; _initNativeStruct(); } }
+        public CharacterRange chrg
+        {
+            get
+            {
+                _readNativeStruct();
+                return _sciTextRange.chrg;
+            }
+            set
+            {
+                _sciTextRange.chrg = value;
+                _initNativeStruct();
+            }
+        }
 
         private void _initNativeStruct()
         {

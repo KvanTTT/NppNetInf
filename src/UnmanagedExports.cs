@@ -1,9 +1,10 @@
 ﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
-using NppPlugin.DllExport;
+
 using System;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using NppPlugin.DllExport;
 
 namespace NppNetInf
 {

@@ -1,4 +1,5 @@
 ﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
+
 using System;
 using System.IO;
 using System.Text;
@@ -9,7 +10,7 @@ namespace NppNetInf
     {
         public static NppData NppData { get; internal set; }
 
-        public static FuncItems FuncItems { get; private set; } = new FuncItems();
+        public static FuncItems FuncItems { get; } = new FuncItems();
 
         public static string UserDataDir { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "NppGist");
 
@@ -34,7 +35,7 @@ namespace NppNetInf
             funcItem._cmdID = index;
             funcItem._itemName = commandName;
             if (functionPointer != null)
-                funcItem._pFunc = new NppFuncItemDelegate(functionPointer);
+                funcItem._pFunc = functionPointer;
             if (shortcut._key != 0)
                 funcItem._pShKey = shortcut;
             funcItem._init2Check = checkOnInit;
@@ -55,7 +56,7 @@ namespace NppNetInf
             return sbIniFilePath.ToString();
         }
 
-        public unsafe static void SetCurrentFileText(string text)
+        public static unsafe void SetCurrentFileText(string text)
         {
             fixed (byte* p = Encoding.UTF8.GetBytes(text))
             {
@@ -63,7 +64,7 @@ namespace NppNetInf
             }
         }
 
-        public unsafe static void AppendTextToCurrentFile(string text)
+        public static unsafe void AppendTextToCurrentFile(string text)
         {
             var bytes = Encoding.UTF8.GetBytes(text);
             fixed (byte* p = bytes)

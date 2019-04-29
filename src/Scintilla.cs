@@ -2972,7 +2972,7 @@ namespace NppNetInf
     {
         Sci_TextToFind _sciTextToFind;
         IntPtr _ptrSciTextToFind;
-        bool _disposed = false;
+        bool _disposed;
 
         /// <summary>
         /// text to find
@@ -3006,7 +3006,7 @@ namespace NppNetInf
             public CharacterRange chrgText;
         }
 
-        public IntPtr NativePointer { get { _initNativeStruct(); return _ptrSciTextToFind; } }
+        public IntPtr NativePointer { set => _initNativeStruct(); get => _ptrSciTextToFind; }
 
         public string lpstrText { set { _freeNativeString(); _sciTextToFind.lpstrText = Marshal.StringToHGlobalAnsi(value); } }
 

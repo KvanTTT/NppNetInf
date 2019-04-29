@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 
 namespace NppPlugin.DllExport
 {
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    partial class DllExportAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Method)]
+    class DllExportAttribute : Attribute
     {
         public DllExportAttribute()
         {
@@ -24,6 +24,6 @@ namespace NppPlugin.DllExport
 
         public CallingConvention CallingConvention { get; set; }
 
-        public string ExportName { get; set; }
+        public string ExportName { get; }
     }
 }

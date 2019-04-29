@@ -1,4 +1,5 @@
 ﻿// NPP plugin platform for .Net v0.93.96 by Kasper B. Graversen etc.
+
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -51,7 +52,7 @@ namespace NppNetInf
         int _sizeFuncItem;
         List<IntPtr> _shortCutKeys;
         IntPtr _nativePointer;
-        bool _disposed = false;
+        bool _disposed;
 
         public FuncItems()
         {
@@ -194,7 +195,7 @@ namespace NppNetInf
     {
         _Sci_TextRange _sciTextRange;
         IntPtr _ptrSciTextRange;
-        bool _disposed = false;
+        bool _disposed;
 
         public Sci_TextRange(Sci_CharacterRange chrRange, int stringCapacity)
         {
