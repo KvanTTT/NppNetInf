@@ -32,7 +32,7 @@
     <Copy
         SourceFiles="$(TargetPath)"
         DestinationFolder="$(ProgramW6432)\Notepad++\plugins\$(TargetName)\"
-        Condition="Exists('$(ProgramW6432)\Notepad++\plugins\$(TargetName)\') AND '$(Platform)'=='x64'AND '$(ConfigurationName)'=='DebugNpp'"
+        Condition="Exists('$(ProgramW6432)\Notepad++\plugins\$(TargetName)\') AND '$(Platform)'=='x64' AND '$(ConfigurationName)'=='DebugNpp'"
         ContinueOnError="false" />
   </Target>
 </Project>

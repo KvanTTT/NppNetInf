@@ -44,8 +44,7 @@ namespace NppNetInf
 
         public static IntPtr GetCurrentScintilla()
         {
-            int curScintilla;
-            Win32.SendMessage(NppData._nppHandle, (uint) NppMsg.NPPM_GETCURRENTSCINTILLA, 0, out curScintilla);
+            Win32.SendMessage(NppData._nppHandle, (uint) NppMsg.NPPM_GETCURRENTSCINTILLA, 0, out var curScintilla);
             return (curScintilla == 0) ? NppData._scintillaMainHandle : NppData._scintillaSecondHandle;
         }
 

@@ -164,8 +164,7 @@ namespace NppNetInf
         /// </summary>
         public static IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, out int lParam)
         {
-            IntPtr outVal;
-            IntPtr retval = SendMessage(hWnd, Msg, new IntPtr(wParam), out outVal);
+            IntPtr retval = SendMessage(hWnd, Msg, new IntPtr(wParam), out var outVal);
             lParam = outVal.ToInt32();
             return retval;
         }
@@ -277,8 +276,7 @@ namespace NppNetInf
         /// </summary>
         public static IntPtr SendMessage(IntPtr hWnd, uint Msg, int wParam, ref LangType lParam)
         {
-            IntPtr outVal;
-            IntPtr retval = SendMessage(hWnd, Msg, new IntPtr(wParam), out outVal);
+            IntPtr retval = SendMessage(hWnd, Msg, new IntPtr(wParam), out var outVal);
             lParam = (LangType)outVal;
             return retval;
         }
