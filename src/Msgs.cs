@@ -164,9 +164,9 @@ namespace NppNetInf
         NPPM_SETMENUITEMCHECK = Constants.NPPMSG + 40,
 
         /// <summary>
-        ///void WM_ADDTOOLBARICON(UINT funcItem[X]._cmdID, toolbarIcons icon)
+        /// void NPPM_ADDTOOLBARICON(UINT funcItem[X]._cmdID, toolbarIcons iconHandles) -- DEPRECATED : use NPPM_ADDTOOLBARICON_FORDARKMODE instead
         /// </summary>
-        NPPM_ADDTOOLBARICON = Constants.NPPMSG + 41,
+        NPPM_ADDTOOLBARICON_DEPRECATED = Constants.NPPMSG + 41,
 
         /// <summary>
         ///winVer NPPM_GETWINDOWSVERSION(0, 0)
@@ -288,6 +288,14 @@ namespace NppNetInf
         /// Returns as int, see LangType. -1 on error
         /// </summary>
         NPPM_GETBUFFERLANGTYPE = Constants.NPPMSG + 64,
+
+        /// <summary>
+        /// VOID NPPM_ADDTOOLBARICON_FORDARKMODE(UINT funcItem[X]._cmdID, toolbarIconsWithDarkMode iconHandles)
+        // Use NPPM_ADDTOOLBARICON_FORDARKMODE instead obsolete NPPM_ADDTOOLBARICON which doesn't support the dark mode
+        // 2 formats / 3 icons are needed:  1 * BMP + 2 * ICO
+        // All 3 handles below should be set so the icon will be displayed correctly if toolbar icon sets are changed by users, also in dark mode
+        /// </summary>
+        NPPM_ADDTOOLBARICON_FORDARKMODE = Constants.NPPMSG + 101,
 
         /// <summary>
         /// BOOL NPPM_SETBUFFERLANGTYPE(INT bufferID, INT langType)

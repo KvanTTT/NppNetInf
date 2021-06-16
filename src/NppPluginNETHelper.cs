@@ -205,6 +205,14 @@ namespace NppNetInf
         public IntPtr hToolbarIcon;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    public struct toolbarIconsWithDarkMode
+    {
+        public IntPtr hToolbarBmp;
+        public IntPtr hToolbarIcon;
+        public IntPtr hToolbarIconDarkMode;
+    }
+
     public class Sci_TextRange : IDisposable
     {
         _Sci_TextRange _sciTextRange;
