@@ -31,6 +31,11 @@ namespace NppNetInf
         private static void setInfo(NppData notepadPlusData)
         {
             PluginBase.NppData = notepadPlusData;
+
+            var version = (int) Win32.SendMessage(PluginBase.NppData._nppHandle, (uint) NppMsg.NPPM_GETNPPVERSION,
+                IntPtr.Zero, out _);
+            PluginBase.NppVersion = new NppVersion(version >> 16, version & 0xFFFF);
+
             _main.CommandMenuInit();
         }
 

@@ -16,6 +16,20 @@ namespace NppNetInf
         public IntPtr _scintillaSecondHandle;
     }
 
+    public readonly struct NppVersion
+    {
+        public readonly int Major;
+        public readonly int Minor;
+
+        public NppVersion(int major, int minor)
+        {
+            Major = major;
+            Minor = minor;
+        }
+
+        public override string ToString() => $"{Major}.{Minor}";
+    }
+
     public delegate void NppFuncItemDelegate();
 
     [StructLayout(LayoutKind.Sequential)]

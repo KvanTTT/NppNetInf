@@ -10,6 +10,8 @@ namespace NppNetInf
     {
         public static NppData NppData { get; internal set; }
 
+        public static NppVersion NppVersion { get; internal set; }
+
         public static FuncItems FuncItems { get; } = new FuncItems();
 
         public static string UserDataDir { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "NppGist");
