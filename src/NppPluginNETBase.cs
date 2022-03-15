@@ -79,7 +79,7 @@ namespace NppNetInf
             if (length == -1)
                 length = Win32.SendMessage(GetCurrentScintilla(), SciMsg.SCI_GETLENGTH, 0, 0).ToInt32();
 
-            Sci_TextRange range = new Sci_TextRange(0, -1, length);
+            Sci_TextRange range = new Sci_TextRange(new IntPtr(0), new IntPtr(-1), length);
             Win32.SendMessage(GetCurrentScintilla(), SciMsg.SCI_GETTEXTRANGE, 0, range.NativePointer);
             return range.lpstrTextUtf8;
         }

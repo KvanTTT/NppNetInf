@@ -180,9 +180,9 @@ namespace NppNetInf
     [StructLayout(LayoutKind.Sequential)]
     public struct CharacterRange
     {
-        public CharacterRange(int cpmin, int cpmax) { cpMin = cpmin; cpMax = cpmax; }
-        public int cpMin;
-        public int cpMax;
+        public CharacterRange(IntPtr cpmin, IntPtr cpmax) { cpMin = cpmin; cpMax = cpmax; }
+        public IntPtr cpMin;
+        public IntPtr cpMax;
     }
 
     public class Cells
@@ -203,16 +203,17 @@ namespace NppNetInf
         IntPtr _ptrSciTextRange;
         bool _disposed;
 
-        public TextRange(CharacterRange chrRange, int stringCapacity)
+        public TextRange(CharacterRange chrRange, long stringCapacity)
         {
             _sciTextRange.chrg = chrRange;
-            _sciTextRange.lpstrText = Marshal.AllocHGlobal(stringCapacity);
+            _sciTextRange.lpstrText = Marshal.AllocHGlobal(new IntPtr(stringCapacity));
         }
-        public TextRange(int cpmin, int cpmax, int stringCapacity)
+
+        public TextRange(IntPtr cpmin, IntPtr  cpmax, long stringCapacity)
         {
             _sciTextRange.chrg.cpMin = cpmin;
             _sciTextRange.chrg.cpMax = cpmax;
-            _sciTextRange.lpstrText = Marshal.AllocHGlobal(stringCapacity);
+            _sciTextRange.lpstrText = Marshal.AllocHGlobal(new IntPtr(stringCapacity));
         }
 
         [StructLayout(LayoutKind.Sequential)]

@@ -219,17 +219,17 @@ namespace NppNetInf
         IntPtr _ptrSciTextRange;
         bool _disposed;
 
-        public Sci_TextRange(Sci_CharacterRange chrRange, int stringCapacity)
+        public Sci_TextRange(Sci_CharacterRange chrRange, long  stringCapacity)
         {
             _sciTextRange.chrg = chrRange;
-            _sciTextRange.lpstrText = Marshal.AllocHGlobal(stringCapacity);
+            _sciTextRange.lpstrText = Marshal.AllocHGlobal(new IntPtr(stringCapacity));
         }
 
-        public Sci_TextRange(int cpmin, int cpmax, int stringCapacity)
+        public Sci_TextRange(IntPtr cpmin, IntPtr cpmax, long  stringCapacity)
         {
             _sciTextRange.chrg.cpMin = cpmin;
             _sciTextRange.chrg.cpMax = cpmax;
-            _sciTextRange.lpstrText = Marshal.AllocHGlobal(stringCapacity);
+            _sciTextRange.lpstrText = Marshal.AllocHGlobal(new IntPtr(stringCapacity));
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -262,9 +262,9 @@ namespace NppNetInf
         [StructLayout(LayoutKind.Sequential)]
         public struct Sci_CharacterRange
         {
-            public Sci_CharacterRange(int cpmin, int cpmax) { cpMin = cpmin; cpMax = cpmax; }
-            public int cpMin;
-            public int cpMax;
+            public Sci_CharacterRange(IntPtr cpmin, IntPtr cpmax) { cpMin = cpmin; cpMax = cpmax; }
+            public IntPtr cpMin;
+            public IntPtr cpMax;
         }
 
         public Sci_CharacterRange chrg { get { _readNativeStruct(); return _sciTextRange.chrg; } set { _sciTextRange.chrg = value; _initNativeStruct(); } }
